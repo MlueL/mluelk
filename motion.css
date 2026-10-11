@@ -1,0 +1,105 @@
+/* ============================================================
+   MLUE motion layer
+   One easing curve, transform/opacity only.
+   ============================================================ */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+
+/* Page enter / leave */
+body { animation: pageIn 0.6s var(--ease-out) backwards; }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+html.page-leave body { opacity: 0; transition: opacity 0.22s var(--ease-soft); }
+
+/* Scroll reveal: shorter travel, longer, softer settle */
+.reveal, .reveal-left, .reveal-right {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transition-delay: var(--d, 0s);
+  will-change: opacity, transform;
+}
+.reveal       { transform: translate3d(0, 26px, 0); }
+.reveal-left  { transform: translate3d(-26px, 0, 0); }
+.reveal-right { transform: translate3d(26px, 0, 0); }
+.reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translate3d(0, 0, 0); }
+.reveal-delay-1 { --d: 0.08s; } .reveal-delay-2 { --d: 0.16s; }
+.reveal-delay-3 { --d: 0.24s; } .reveal-delay-4 { --d: 0.32s; }
+/* Once settled, hand transitions back so hover feels instant, not 0.9s slow. */
+.reveal-done {
+  will-change: auto;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out),
+              border-color 0.3s var(--ease-soft), background-color 0.3s var(--ease-soft),
+              color 0.3s var(--ease-soft), padding 0.4s var(--ease-out) !important;
+  transition-delay: 0s !important;
+}
+
+/* Hero entrance */
+.page-kicker, .hero-eyebrow, .hero-sub, .hero-actions, .hero-title, .page-title {
+  animation-timing-function: var(--ease-out) !important;
+}
+.page-kicker { transform: translateY(14px); }
+.page-title  { transform: translateY(28px); animation-duration: 1s !important; }
+.hero-title  { opacity: 0; transform: translateY(32px); animation: fadeUp 1s var(--ease-out) 0.3s forwards; }
+.hero-sub    { animation-duration: 0.9s !important; }
+.hero-actions{ animation-duration: 0.9s !important; }
+
+/* Hover: lift only, no tilt */
+.pkg-card, .svc-card, .value-card, .vm-card, .stat-card-clean, .rs-stat,
+.founder-card, .ala-card, .deck-card, .faq-item, .stat-block {
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.3s var(--ease-soft);
+}
+.pkg-card:hover, .svc-card:hover, .value-card:hover, .vm-card:hover, .stat-card-clean:hover,
+.rs-stat:hover, .founder-card:hover, .ala-card:hover, .deck-card:hover, .stat-block:hover {
+  transform: translate3d(0, -6px, 0) !important;
+}
+.faq-item:hover { transform: translate3d(0, -2px, 0); }
+
+/* Buttons */
+.btn-primary, .btn-secondary, .nav-cta, .pkg-cta, .form-submit {
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out),
+              background-color 0.25s, border-color 0.25s, color 0.25s !important;
+}
+.btn-primary:active, .btn-secondary:active, .nav-cta:active, .pkg-cta:active { transform: translateY(0) scale(0.98) !important; transition-duration: 0.1s !important; }
+
+/* Nav */
+nav { transition: padding 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.4s !important; }
+nav.scrolled { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+.nav-links a::after { transition: right 0.45s var(--ease-out); }
+
+/* Service rows / links */
+.service-row { transition: padding 0.45s var(--ease-out) !important; }
+.service-row::before { transition: left 0.9s var(--ease-out); }
+.svc-arrow { transition: transform 0.45s var(--ease-out), border-color 0.3s, color 0.3s, box-shadow 0.3s !important; }
+.pkg-cta, .svc-card-link { transition: gap 0.4s var(--ease-out), color 0.25s !important; }
+
+/* Ticker: calmer, pauses on hover */
+.ticker-inner { animation-duration: 45s; will-change: transform; }
+.ticker-wrap:hover .ticker-inner { animation-play-state: paused; }
+
+/* Pointer glow in hero (position set by motion.js, cheap CSS var update) */
+.hero-pointer {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(8,145,178,0.11), transparent 70%);
+  transition: opacity 0.6s var(--ease-soft);
+}
+#hero:hover .hero-pointer { opacity: 1; }
+
+/* Accordion-free FAQ: keep static but smooth border/lift (see above) */
+
+/* Loader: slower, softer exit */
+#mlue-loader.loader-done { animation: loaderFadeOut 0.55s var(--ease-soft) forwards !important; }
+.loader-stage { transition: transform 0.9s var(--ease-out) !important; }
+
+/* Anchor offset + focus */
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+
+
+/* First visit: hold the hero entrance until the logo loader has finished */
+body:has(#mlue-loader:not(.skip):not(.loader-done)) :is(.page-kicker, .page-title, .hero-title, .hero-sub, .hero-actions, .hero-eyebrow) {
+  animation-play-state: paused;
+}
+
+#mlue-loader.skip { display: none !important; }
+#mlue-loader { position: fixed; inset: 0; z-index: 99999; background: #F8FAFC; display: flex; align-items: center; justify-content: center; pointer-events: none; }

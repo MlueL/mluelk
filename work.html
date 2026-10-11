@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MLUE social media packages from LKR 35,000 a month, plus single services for video, events and drone footage.">
+<title>Packages & Pricing | MLUE</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="shared.css?v=1791568788258">
+<style>
+
+/* ── HERO (Plain White, Centered) ─────────────────────────── */
+#hero {
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8.5rem 5vw 4.5rem;
+  background: #FFFFFF !important;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-kicker {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cyan); font-weight: 600; margin-bottom: 1.2rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.page-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.6rem, 8.5vw, 7.5rem);
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+  opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  color: #0F172A;
+  text-align: center;
+}
+.page-title .cyan { color: var(--cyan); }
+
+/* ── PACKAGES SECTION ─────────────────────────────────────── */
+#packages {
+  padding: 7rem 5vw 9rem;
+  border-top: 1px solid var(--border);
+}
+
+.packages-intro {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.packages-intro .section-label { justify-content: center; }
+.packages-intro .section-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+.packages-intro .section-sub {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 520px;
+}
+
+/* Toggle */
+.pkg-toggle {
+  display: flex; gap: 0;
+  background: var(--navy-card); border: 1px solid var(--border-blue);
+  border-radius: 3rem; padding: 5px;
+  width: fit-content; margin: 0 auto 5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.6s forwards;
+}
+.pkg-toggle-btn {
+  padding: 0.7rem 1.8rem; border-radius: 3rem; border: none;
+  background: none; color: var(--grey);
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 500;
+  cursor: pointer; transition: all 0.3s; white-space: nowrap;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.pkg-toggle-btn.active {
+  background: linear-gradient(135deg, var(--blue), #0284C7);
+  color: var(--white); box-shadow: 0 4px 20px var(--blue-glow);
+}
+.toggle-badge {
+  background: rgba(34,211,238,0.15); color: var(--cyan);
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem; border-radius: 2rem;
+  border: 1px solid var(--border-cyan);
+  transition: background 0.3s;
+}
+.pkg-toggle-btn.active .toggle-badge {
+  background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.2);
+}
+
+/* Cards grid */
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.pkg-card {
+  background: var(--navy-card); border: 1px solid var(--border-blue);
+  border-radius: 2rem; padding: 2.8rem 2.5rem;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.4s, border-color 0.4s;
+}
+.pkg-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,168,205,0.05), rgba(34,211,238,0.02));
+  opacity: 0; transition: opacity 0.4s;
+  pointer-events: none;
+}
+.pkg-card:hover { transform: translateY(-10px); box-shadow: 0 28px 70px rgba(0,168,205,0.18); }
+.pkg-card:hover::before { opacity: 1; }
+
+/* Featured card */
+.pkg-card.featured {
+  border-color: var(--border-cyan);
+  background: linear-gradient(160deg, rgba(0,168,205,0.1), rgba(34,211,238,0.04), var(--navy-card));
+}
+.pkg-card.featured::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 2rem;
+  background: linear-gradient(135deg, rgba(34,211,238,0.5), rgba(0,168,205,0.3), rgba(34,211,238,0.1));
+  z-index: -1;
+}
+.pkg-card.featured:hover { box-shadow: 0 28px 80px rgba(34,211,238,0.18); }
+
+/* Badge */
+.pkg-badge-wrap { min-height: 34px; margin-bottom: 1.5rem; display: flex; align-items: center; }
+.pkg-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(0,168,205,0.12));
+  color: var(--cyan); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.38rem 1rem; border-radius: 3rem;
+  border: 1px solid var(--border-cyan);
+  box-shadow: 0 0 16px rgba(34,211,238,0.12);
+}
+.badge-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--cyan);
+  animation: pulse 2s infinite;
+}
+
+/* Tier name */
+.pkg-name {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem; letter-spacing: 0.08em;
+  margin-bottom: 1.2rem; color: var(--white);
+}
+
+/* Price */
+.pkg-price-block { margin-bottom: 0.6rem; }
+.pkg-price-row { display: flex; align-items: baseline; gap: 0.25rem; }
+.pkg-price-cur {
+  font-size: 1rem; font-weight: 600; color: var(--grey);
+  line-height: 1; margin-bottom: 0.2rem;
+}
+.pkg-price-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 3.4rem);
+  line-height: 1; color: var(--white);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: inline-block;
+}
+.pkg-price-period {
+  font-size: 0.8rem; color: var(--grey); margin-top: 0.3rem;
+}
+/* Strikethrough original price when discount active */
+.pkg-price-original {
+  font-size: 0.9rem; color: var(--grey); text-decoration: line-through;
+  opacity: 0; max-height: 0; overflow: hidden; transition: opacity 0.3s, max-height 0.3s;
+  margin-top: 0.1rem;
+}
+.pkg-price-original.visible { opacity: 0.6; max-height: 2rem; }
+.pkg-price-save {
+  display: inline-block; font-size: 0.72rem; font-weight: 700;
+  color: #22c55e; background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.25); border-radius: 2rem;
+  padding: 0.15rem 0.6rem; margin-left: 0.5rem;
+  opacity: 0; transition: opacity 0.3s; vertical-align: middle;
+}
+.pkg-price-save.visible { opacity: 1; }
+
+.pkg-divider {
+  height: 1px; background: var(--border); margin: 1.8rem 0;
+}
+
+/* Features */
+.pkg-features { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; flex: 1; }
+.pkg-features li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.88rem; color: var(--white-dim); line-height: 1.5;
+}
+.pkg-check {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(34,211,238,0.1); border: 1px solid var(--border-cyan);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 0.1rem;
+  font-size: 0.65rem; color: var(--cyan); font-weight: 700;
+}
+.pkg-card.featured .pkg-check {
+  background: rgba(34,211,238,0.15);
+}
+
+/* CTA button */
+.pkg-cta {
+  display: block; text-align: center; padding: 1.1rem;
+  border-radius: 3rem; font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; transition: all 0.3s; margin-top: auto;
+  letter-spacing: 0.02em;
+}
+.pkg-cta-outline {
+  border: 1px solid var(--border-blue); color: var(--white);
+}
+.pkg-cta-outline:hover {
+  border-color: var(--cyan); color: var(--cyan);
+  box-shadow: 0 0 28px rgba(34,211,238,0.12);
+}
+.pkg-cta-fill {
+  background: linear-gradient(135deg, var(--blue), #0284C7);
+  color: var(--white); box-shadow: 0 6px 28px var(--blue-glow);
+}
+.pkg-cta-fill:hover {
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue));
+  transform: translateY(-2px); box-shadow: 0 14px 44px var(--blue-glow);
+}
+
+/* ── COMPARISON TABLE ─────────────────────────────────────── */
+#compare {
+  padding: 7rem 5vw; background: var(--navy); border-top: 1px solid var(--border);
+}
+.compare-table {
+  margin-top: 4rem; border: 1px solid var(--border-blue);
+  border-radius: 1.5rem; overflow: hidden;
+}
+.compare-header, .compare-row {
+  display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr;
+}
+.compare-header { background: var(--navy-mid); }
+.compare-row { border-top: 1px solid var(--border); transition: background 0.2s; }
+.compare-row:nth-child(even) { background: rgba(0,168,205,0.02); }
+.compare-row:hover { background: rgba(34,211,238,0.03); }
+.ch, .cd { padding: 1.1rem 1.5rem; font-size: 0.87rem; }
+.ch:first-child, .cd:first-child { font-weight: 500; color: var(--white-dim); }
+.ch:not(:first-child) {
+  font-family: 'Anton', sans-serif; font-size: 0.9rem;
+  letter-spacing: 0.08em; text-align: center; color: var(--white);
+}
+.ch.highlight { color: var(--cyan); }
+.cd:not(:first-child) { text-align: center; color: var(--grey); }
+.cd.yes { color: var(--cyan); font-weight: 600; }
+.cd.no { color: rgba(15, 23, 42, 0.2); }
+
+/* ── A LA CARTE & EVENT SERVICES ──────────────────────────── */
+#ala-carte {
+  padding: 7rem 5vw; border-top: 1px solid var(--border);
+}
+.ala-intro { margin-bottom: 3.5rem; max-width: 620px; }
+.ala-intro .section-title .cyan { color: var(--cyan); }
+
+.ala-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+.ala-card-wide { grid-column: 1 / -1; }
+
+.ala-card {
+  background: var(--navy-card); border: 1px solid var(--border-blue);
+  border-radius: 1.5rem; padding: 1.8rem 2rem;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.ala-card:hover {
+  border-color: var(--border-cyan);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,168,205,0.1);
+}
+
+.ala-card-top { display: flex; align-items: flex-start; gap: 1.1rem; }
+.ala-icon-badge {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(0,168,205,0.2), rgba(34,211,238,0.1));
+  border: 1px solid var(--border-cyan);
+}
+.ala-icon-badge svg { width: 20px; height: 20px; stroke: var(--cyan); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.ala-card-info { flex: 1; min-width: 0; }
+.ala-card-title { font-weight: 700; font-size: 1.02rem; margin-bottom: 0.4rem; line-height: 1.3; }
+.ala-card-desc { color: var(--grey); font-size: 0.84rem; line-height: 1.6; }
+
+.ala-price { text-align: right; flex-shrink: 0; padding-left: 1rem; }
+.ala-price-num {
+  font-family: 'Anton', sans-serif; font-size: 1.7rem; color: var(--white);
+  line-height: 1; white-space: nowrap;
+}
+.ala-price-num .ala-cur { font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem; font-weight: 600; color: var(--grey); margin-left: 0.2rem; }
+.ala-price-label { font-size: 0.68rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+.ala-card-foot {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid var(--border);
+  font-size: 0.78rem; color: var(--grey);
+}
+.ala-card-foot strong { color: var(--white-dim); font-weight: 600; }
+
+.ala-subrows { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+.ala-subrow {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  background: rgba(0,168,205,0.05); border: 1px solid var(--border);
+  border-radius: 1rem; padding: 1rem 1.4rem; transition: border-color 0.3s;
+}
+.ala-subrow:hover { border-color: var(--border-cyan); }
+.ala-subrow.large { border-color: var(--border-cyan); background: rgba(34,211,238,0.05); }
+.ala-subrow-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.2rem; }
+.ala-subrow-desc { color: var(--grey); font-size: 0.8rem; line-height: 1.5; }
+.ala-subrow-price {
+  font-family: 'Anton', sans-serif; font-size: 1.15rem; color: var(--white);
+  text-align: right; flex-shrink: 0; white-space: nowrap;
+}
+.ala-subrow-price span { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; color: var(--cyan); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.15rem; }
+
+.ala-bottom-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+  margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border);
+}
+.ala-bottom-text { color: var(--grey); font-size: 0.92rem; line-height: 1.7; max-width: 420px; }
+
+/* ── FAQ ──────────────────────────────────────────────────── */
+#faq { padding: 7rem 5vw; border-top: 1px solid var(--border); }
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.2rem; margin-top: 4rem;
+}
+.faq-item {
+  background: var(--navy-card); border: 1px solid var(--border-blue);
+  border-radius: 1.2rem; padding: 1.8rem 2rem;
+  cursor: pointer; transition: border-color 0.3s;
+}
+.faq-item:hover { border-color: var(--border-cyan); }
+.faq-q {
+  font-weight: 600; font-size: 0.97rem; margin-bottom: 0.8rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  line-height: 1.4;
+}
+.faq-icon { color: var(--cyan); font-size: 1.1rem; flex-shrink: 0; font-weight: 300; }
+.faq-a { color: var(--grey); font-size: 0.87rem; line-height: 1.75; }
+
+/* ── CTA STRIP ────────────────────────────────────────────── */
+#pkg-cta {
+  padding: 8rem 5vw; text-align: center;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+  border-top: 1px solid var(--border); position: relative; overflow: hidden;
+}
+#pkg-cta::before {
+  content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 800px; height: 400px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,168,205,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.pkg-cta-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+  line-height: 1.05; letter-spacing: 0.04em;
+  margin-bottom: 1.5rem; position: relative;
+}
+.pkg-cta-title .cyan { color: var(--cyan); }
+
+/* ── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .pkg-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; gap: 1.2rem; }
+  .compare-table { overflow-x: auto; }
+  .compare-header, .compare-row { min-width: 580px; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .ala-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  #packages { padding: 5rem 5vw 7rem; }
+  .pkg-card { padding: 2.2rem 1.8rem; }
+  .pkg-grid { max-width: 100%; }
+  .page-title { font-size: clamp(3rem, 12vw, 5rem); letter-spacing: 0.03em; }
+  #compare, #faq { padding: 5rem 5vw; }
+  .pkg-toggle { max-width: 100%; }
+  .pkg-toggle-btn { padding: 0.65rem 1.2rem; font-size: 0.82rem; }
+  #ala-carte { padding: 5rem 5vw; }
+  .ala-card-top { flex-direction: column; }
+  .ala-price { text-align: left; padding-left: 0; margin-top: 0.6rem; }
+  .ala-card-foot { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  .ala-subrow { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .ala-subrow-price { text-align: left; }
+  .ala-bottom-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+}
+
+.pkg-cur-label { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.06em; font-weight: 600; margin-bottom: 0.2rem; }
+.cd.no { color: rgba(15, 23, 42, 0.28); font-size: 0.8rem; }
+</style>
+<link rel="stylesheet" href="refresh.css?v=1">
+<link rel="stylesheet" href="deck.css?v=2">
+<link rel="stylesheet" href="motion.css?v=2">
+<link rel="stylesheet" href="compact.css?v=2">
+</head>
+<body>
+<!-- MLUE INTRO LOADER -->
+<div id="mlue-loader">
+  <div class="loader-stage" id="loaderStage">
+    <svg class="loader-logo" id="loaderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162" style="width:min(340px,32vw);height:auto;display:block;overflow:visible;">
+      <path class="from-left"  fill="#0F172A" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/>
+      <path class="from-left"  fill="#0F172A" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/>
+      <path class="from-left"  fill="#0F172A" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/>
+      <path class="from-right" fill="#0F172A" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/>
+      <path class="from-right" fill="#0F172A" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/>
+      <path class="from-left"  fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/>
+      <path class="from-right" fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/>
+    </svg>
+    <div class="loader-tagline">Creative Social Media Agency</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo"><div class="logo-svg-wrap"><svg style="color:#0f172a;" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162"><path fill="currentColor" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/><path fill="currentColor" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/><path fill="currentColor" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/><path fill="currentColor" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/><path fill="currentColor" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/><path fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/><path fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/></svg></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html" class="active">Packages</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us →</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-burger" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="page-kicker">Transparent Pricing</p>
+    <h1 class="page-title">PACKAGES &amp;<br><span class="cyan">PRICING</span></h1>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="packages-intro reveal">
+    <p class="section-label">Social Media &amp; Content Packages</p>
+    <h2 class="section-title">Choose the plan<br>that fits.</h2>
+    <p class="section-sub">Pick the one that matches how much you want to post each month.</p>
+  </div>
+
+  <div class="pkg-grid">
+    <div class="pkg-card reveal">
+      <div class="pkg-badge-wrap"></div>
+      <div class="pkg-name">STARTER</div>
+      <div class="pkg-price-block">
+        <div class="pkg-cur-label">LKR</div>
+        <div class="pkg-price-num">35,000</div>
+        <div class="pkg-price-period">per month</div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="pkg-check">✓</span>2 Platforms (Instagram + Facebook)</li>
+        <li><span class="pkg-check">✓</span>5 posts per month</li>
+        <li><span class="pkg-check">✓</span>10 Stories per month</li>
+        <li><span class="pkg-check">✓</span>3 Creative Reels</li>
+        <li><span class="pkg-check">✓</span>Half Day Shoot</li>
+        <li><span class="pkg-check">✓</span>Captions + Hashtags</li>
+        <li><span class="pkg-check">✓</span>Monthly Content Calendar</li>
+        <li><span class="pkg-check">✓</span>Basic Monthly Report</li>
+      </ul>
+      <a href="contact.html" class="pkg-cta pkg-cta-outline">Contact Us →</a>
+    </div>
+    <div class="pkg-card featured reveal">
+      <div class="pkg-badge-wrap">
+        <div class="pkg-badge"><span class="badge-dot"></span>Most Popular</div>
+      </div>
+      <div class="pkg-name">GROWTH</div>
+      <div class="pkg-price-block">
+        <div class="pkg-cur-label">LKR</div>
+        <div class="pkg-price-num">55,000</div>
+        <div class="pkg-price-period">per month</div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="pkg-check">✓</span>3 Platforms (Instagram + Facebook + TikTok)</li>
+        <li><span class="pkg-check">✓</span>12 posts per month (Posts + Reels)</li>
+        <li><span class="pkg-check">✓</span>17 Stories per month</li>
+        <li><span class="pkg-check">✓</span>8 Creative Reels</li>
+        <li><span class="pkg-check">✓</span>Full Day Shoot</li>
+        <li><span class="pkg-check">✓</span>Captions + Hashtags</li>
+        <li><span class="pkg-check">✓</span>Community Management (Comments + DMs)</li>
+        <li><span class="pkg-check">✓</span>Custom Content Calendar</li>
+        <li><span class="pkg-check">✓</span>Monthly Report + Recommendations</li>
+      </ul>
+      <a href="contact.html" class="pkg-cta pkg-cta-fill">Contact Us →</a>
+    </div>
+    <div class="pkg-card reveal">
+      <div class="pkg-badge-wrap"></div>
+      <div class="pkg-name">PREMIUM</div>
+      <div class="pkg-price-block">
+        <div class="pkg-cur-label">LKR</div>
+        <div class="pkg-price-num">90,000</div>
+        <div class="pkg-price-period">per month</div>
+      </div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="pkg-check">✓</span>3 Platforms (Instagram + Facebook + TikTok)</li>
+        <li><span class="pkg-check">✓</span>20 posts per month (Posts + Reels)</li>
+        <li><span class="pkg-check">✓</span>22 Stories per month</li>
+        <li><span class="pkg-check">✓</span>15 Creative Reels</li>
+        <li><span class="pkg-check">✓</span>2 Full Day Shoots</li>
+        <li><span class="pkg-check">✓</span>Captions + Hashtags</li>
+        <li><span class="pkg-check">✓</span>Community Management (Comments + DMs)</li>
+        <li><span class="pkg-check">✓</span>Influencer Collaboration Support</li>
+        <li><span class="pkg-check">✓</span>Custom Calendar</li>
+        <li><span class="pkg-check">✓</span>Monthly Report + Recommendations</li>
+      </ul>
+      <a href="contact.html" class="pkg-cta pkg-cta-outline">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ONE-OFF PROJECTS & EVENT COVERAGE -->
+<section id="ala-carte">
+  <div class="ala-intro">
+    <p class="section-label reveal">Single Services</p>
+    <h2 class="section-title reveal reveal-delay-1">Projects &amp;<br><span class="cyan">Event Coverage</span></h2>
+    <p class="section-sub reveal reveal-delay-2">Need something specific? Pick only what you need. There's no retainer, and it works for one-off projects, product launches and events.</p>
+  </div>
+
+  <div class="ala-grid">
+    <div class="ala-card reveal">
+      <div class="ala-card-top">
+        <div class="ala-icon-badge"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="ala-card-info">
+          <h3 class="ala-card-title">Video Editing</h3>
+          <p class="ala-card-desc">We edit your footage into a finished video. The price depends on the work involved.</p>
+        </div>
+        <div class="ala-price">
+          <div class="ala-price-num">4,000 to 15,000<span class="ala-cur">LKR</span></div>
+          <div class="ala-price-label">price range</div>
+        </div>
+      </div>
+    </div>
+    <div class="ala-card reveal reveal-delay-1">
+      <div class="ala-card-top">
+        <div class="ala-icon-badge"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <div class="ala-card-info">
+          <h3 class="ala-card-title">Video Shooting + Editing</h3>
+          <p class="ala-card-desc">We come to you, film on site and edit it. The price depends on the size of the shoot.</p>
+        </div>
+        <div class="ala-price">
+          <div class="ala-price-num">8,000 to 40,000<span class="ala-cur">LKR</span></div>
+          <div class="ala-price-label">price range</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ala-card ala-card-wide reveal reveal-delay-2">
+      <div class="ala-card-top">
+        <div class="ala-icon-badge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="ala-card-info">
+          <h3 class="ala-card-title">Event Coverage</h3>
+          <p class="ala-card-desc">Coverage for launches and other events, billed by the hour.</p>
+        </div>
+      </div>
+      <div class="ala-subrows">
+        <div class="ala-subrow">
+          <div>
+            <div class="ala-subrow-title">Small Events</div>
+            <div class="ala-subrow-desc">Gatherings, pop-ups and smaller launches</div>
+          </div>
+          <div class="ala-subrow-price">LKR 2,000<span>per hour</span></div>
+        </div>
+        <div class="ala-subrow large">
+          <div>
+            <div class="ala-subrow-title">Large Events, 3-Person Crew</div>
+            <div class="ala-subrow-desc">A full crew for bigger events</div>
+          </div>
+          <div class="ala-subrow-price">LKR 2,500<span>per hour</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ala-card ala-card-wide reveal reveal-delay-3">
+      <div class="ala-card-top">
+        <div class="ala-icon-badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/></svg></div>
+        <div class="ala-card-info">
+          <h3 class="ala-card-title">Additional Drone Footage</h3>
+          <p class="ala-card-desc">Add aerial footage to any shoot.</p>
+        </div>
+        <div class="ala-price">
+          <div class="ala-price-num">25,000<span class="ala-cur">LKR</span></div>
+          <div class="ala-price-label">add-on</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ala-bottom-row reveal">
+    <p class="ala-bottom-text">Not sure what you need? Send us a message and we'll put together a quote within 24 hours.</p>
+    <a href="contact.html" class="btn-primary">Request a Quote →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <p class="section-label reveal">Questions</p>
+  <h2 class="section-title reveal reveal-delay-1">Frequently Asked</h2>
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <div class="faq-q">Where do the shoots happen?</div>
+      <div class="faq-a">At your business. The half-day and full-day shoots in each plan take place at your location.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">How will I know what's working?</div>
+      <div class="faq-a">You get a monthly report. Starter has the basic report. Growth and Premium add recommendations for what to do next.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">What if I only need one thing?</div>
+      <div class="faq-a">Use the single services above. They're priced without a retainer.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q">What if a plan doesn't quite fit?</div>
+      <div class="faq-a">Tell us what you need and we'll talk it through. You can also pick a plan and add single services on top.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="pkg-cta">
+  <p class="section-label reveal" style="justify-content:center;">Ready?</p>
+  <h2 class="pkg-cta-title reveal reveal-delay-1">Pick a plan and<br>we'll come to <span class="italic-accent">you.</span></h2>
+  <p class="closing-sub reveal reveal-delay-2">Send us a message and we'll set up a time to visit your business.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal reveal-delay-3">
+    <a href="contact.html" class="btn-primary">Contact Us →</a>
+    <a href="services.html" class="btn-secondary">View Services</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-svg-wrap" style="height:36px;">
+        <svg style="color:#0f172a;" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162"><path fill="currentColor" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/><path fill="currentColor" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/><path fill="currentColor" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/><path fill="currentColor" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/><path fill="currentColor" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/><path fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/><path fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/></svg>
+      </div>
+      <p>We show the real owner, team and process behind your business.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="services.html">Social Media</a>
+      <a href="services.html">Content Creation</a>
+      <a href="services.html">Video Production</a>
+      <a href="services.html">Event Coverage</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="mailto:infomluelk@gmail.com">infomluelk@gmail.com</a>
+      <a href="tel:+94728444300">+94 728 444 300</a>
+      <a href="contact.html">Let's Meet</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 MLUE. All rights reserved.</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/mluelk?srtk=MWZrNHBvNHNieWljeQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/share/1C7NvD5EyV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1877F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@mlue.lk?_r=1&amp;_t=ZS-9APvXCyV6C0" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="motion.js" defer></script>
+
+<script src="loader.js"></script>
+</body>
+</html>
