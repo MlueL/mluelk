@@ -701,7 +701,7 @@ function mailtoFallback() {
 /* ── FORM SUBMISSION ────────────────
    Paste your Google Apps Script web app URL between the quotes below (see the setup guide).
    Leave it empty to use the built-in server (when running npm start) or the email-app fallback. */
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz1NwuoYDVLKWRRbfsDyHTHGCcf4N-RJczCyWV1pSECV5oV_0CZ2EroxPuJRyumg5xP/exec';
 
 async function sendEnquiry(form) {
   const data = Object.fromEntries(new FormData(form).entries());
