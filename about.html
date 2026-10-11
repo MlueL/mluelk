@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Meet the three founders behind MLUE and learn why we show the real owner, team and process behind every business we work with.">
+<title>About | MLUE</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="shared.css?v=1791568788258">
+<style>
+
+/* ── ABOUT HERO (Plain White, Centered) ───────────────────── */
+#hero {
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8.5rem 5vw 4.5rem;
+  background: #FFFFFF !important;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-kicker {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cyan); font-weight: 600; margin-bottom: 1.2rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.page-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.6rem, 8.5vw, 7.5rem);
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+  opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  color: #0F172A;
+  text-align: center;
+}
+.page-title .cyan { color: var(--cyan); }
+
+/* ── STORY ────────────────────────────────────────────────── */
+#story {
+  padding: 9rem 5vw;
+  border-top: 1px solid var(--border);
+  background: var(--navy);
+}
+.story-inner {
+  max-width: 860px; margin: 0 auto; text-align: center;
+}
+.story-inner .section-title {
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+  margin-bottom: 2rem; line-height: 1.0;
+}
+.story-year-badge {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: var(--navy-card); border: 1px solid var(--border-cyan);
+  border-radius: 1.5rem; padding: 1.4rem 2.6rem; margin-bottom: 4rem;
+}
+.story-year-badge .yr { font-family: 'Anton', sans-serif; font-size: 3.2rem; color: var(--cyan); line-height: 1; }
+.story-year-badge .yr-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); margin-top: 0.3rem; }
+.story-body { max-width: 720px; margin: 0 auto; }
+.story-body p {
+  color: var(--white-dim); font-size: 1.06rem; line-height: 1.9;
+  margin-bottom: 1.6rem; font-weight: 300;
+}
+.story-body p strong { color: var(--white); font-weight: 600; }
+.story-divider {
+  width: 60px; height: 2px; margin: 3rem auto;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  border-radius: 2px;
+}
+
+/* ── VISION & MISSION ─────────────────────────────────────── */
+#vision-mission {
+  padding: 9rem 5vw;
+  border-top: 1px solid var(--border);
+  background: #FFFFFF;
+}
+.vm-header { max-width: 600px; margin-bottom: 5rem; }
+.vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+.vm-card {
+  border-radius: 2rem; padding: 4rem 3.5rem;
+  position: relative; overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid rgba(15,23,42,0.08);
+  box-shadow: 0 10px 40px rgba(15,23,42,0.06);
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.vm-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(0,168,205,0.12); }
+.vm-card.vision {
+  border-top: 3px solid #00A8CD;
+}
+.vm-card.mission {
+  border-top: 3px solid #00A8CD;
+}
+/* decorative corner accent */
+.vm-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-blue), transparent);
+  transition: background 0.4s;
+}
+.vm-card.vision:hover::before { background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+.vm-card.mission::before { background: linear-gradient(90deg, transparent, var(--border-cyan), transparent); }
+.vm-card.mission:hover::before { background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+
+/* big decorative letter */
+.vm-bg-letter {
+  position: absolute; bottom: -1.5rem; right: 2rem;
+  font-family: 'Anton', sans-serif; font-size: 11rem; line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.vm-card.vision .vm-bg-letter { color: rgba(0,168,205,0.05); }
+.vm-card.mission .vm-bg-letter { color: rgba(14,165,233,0.05); }
+
+.vm-icon-wrap {
+  width: 64px; height: 64px; border-radius: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.vm-card.vision .vm-icon-wrap { background: rgba(0,168,205,0.08); border: 1px solid rgba(0,168,205,0.20); }
+.vm-card.mission .vm-icon-wrap { background: rgba(14,165,233,0.08); border: 1px solid rgba(14,165,233,0.20); }
+.vm-icon-wrap svg { width: 28px; height: 28px; }
+.vm-card.vision .vm-icon-wrap svg { stroke: #00A8CD; }
+.vm-card.mission .vm-icon-wrap svg { stroke: var(--cyan); }
+
+.vm-label {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 1rem;
+}
+.vm-card.vision .vm-label { color: #00A8CD; }
+.vm-card.mission .vm-label { color: var(--cyan); }
+.vm-title { font-family: 'Anton', sans-serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 1.5rem; color: #0F172A; }
+.vm-text { color: #475569; font-size: 1rem; line-height: 1.85; font-weight: 300; position: relative; z-index: 1; max-width: 400px; }
+
+/* ── VALUES ───────────────────────────────────────────────── */
+#values {
+  padding: 9rem 5vw;
+  border-top: 1px solid var(--border);
+  background: var(--navy);
+}
+.values-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 5rem; }
+.values-header-sub { color: var(--grey); font-size: 1rem; line-height: 1.8; font-weight: 300; max-width: 420px; align-self: center; }
+
+.values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+.value-card {
+  background: var(--navy-card); border: 1px solid var(--border-blue);
+  border-radius: 1.8rem; padding: 3rem;
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  position: relative; overflow: hidden;
+}
+.value-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(0,168,205,0.05), rgba(34,211,238,0.03));
+  opacity: 0; transition: opacity 0.35s; border-radius: inherit;
+  pointer-events: none;
+}
+.value-card:hover { transform: translateY(-6px); border-color: var(--border-cyan); box-shadow: 0 20px 60px rgba(34,211,238,0.08); }
+.value-card:hover::after { opacity: 1; }
+
+.value-icon-wrap {
+  width: 52px; height: 52px; border-radius: 1rem; margin-bottom: 2rem;
+  background: rgba(0,168,205,0.08); border: 1px solid rgba(0,168,205,0.18);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s, border-color 0.3s;
+}
+.value-card:hover .value-icon-wrap { background: rgba(34,211,238,0.12); border-color: var(--border-cyan); }
+.value-icon-wrap svg { width: 24px; height: 24px; stroke: var(--cyan); }
+
+.value-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; letter-spacing: -0.01em; }
+.value-desc { color: var(--grey); font-size: 0.92rem; line-height: 1.75; font-weight: 300; }
+
+/* ── MOBILE ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .vm-grid, .values-grid { grid-template-columns: 1fr; }
+  .values-header { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+  .vm-card { padding: 3rem 2.5rem; }
+  .vm-bg-letter { font-size: 7rem; }
+}
+@media (max-width: 600px) {
+  #story, #vision-mission, #values { padding: 5rem 5vw; }
+  .vm-card { padding: 2.5rem 2rem; }
+  .value-card { padding: 2.5rem 2rem; }
+  .story-year-badge { padding: 1rem 2rem; }
+}
+
+/* ─── THE PEOPLE BEHIND MLUE (Image 4 & 5) ───────────────────── */
+#team {
+  padding: 8rem 5vw;
+  background: #F8FAFC;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.team-header {
+  max-width: 720px;
+  margin-bottom: 4rem;
+}
+.team-header .section-title {
+  font-size: clamp(2.6rem, 5.5vw, 5rem);
+  line-height: 1.05;
+  margin-bottom: 1.2rem;
+}
+.team-header .section-title .italic-cyan {
+  color: var(--cyan);
+  font-style: italic;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+.team-grid-layout {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 4.5rem;
+  align-items: center;
+}
+.team-photo-card {
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(15,23,42,0.12);
+  border: 1px solid rgba(15,23,42,0.08);
+  background: #070F1E;
+}
+.team-photo-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.team-photo-card:hover img {
+  transform: scale(1.02);
+}
+.founders-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.founder-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 1.4rem;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 6px 20px rgba(15,23,42,0.04);
+  transition: all 0.3s;
+}
+.founder-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,168,205,0.3);
+  box-shadow: 0 14px 36px rgba(0,168,205,0.10);
+}
+.founder-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 0.2rem;
+}
+.founder-card .founder-role {
+  font-size: 0.82rem;
+  color: #64748B;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.mission-callout {
+  margin-top: 2rem;
+  border-left: 3.5px solid var(--cyan);
+  padding: 1.2rem 1.8rem;
+  background: #FFFFFF;
+  border-radius: 0 1.2rem 1.2rem 0;
+  box-shadow: 0 6px 20px rgba(15,23,42,0.04);
+}
+.mission-callout .mc-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.5rem;
+}
+.mission-callout .mc-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1E293B;
+  font-weight: 500;
+}
+
+@media (max-width: 960px) {
+  .team-grid-layout { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+
+/* ─── ABOUT REAL STATISTICS (Clean, Plain White, Centered) ─── */
+#about-stats {
+  padding: 7rem 5vw;
+  background: #FFFFFF !important;
+  border-top: 1px solid var(--border);
+}
+.about-stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about-stats-grid-clean {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+  margin-top: 3.5rem;
+}
+.stat-card-clean {
+  background: #FFFFFF;
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 1.6rem;
+  padding: 2.8rem 1.8rem;
+  box-shadow: 0 8px 30px rgba(15,23,42,0.04);
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card-clean:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0,168,205,0.35);
+  box-shadow: 0 20px 48px rgba(0,168,205,0.12);
+}
+.stat-card-clean .s-clean-num {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.8rem, 4.2vw, 3.8rem);
+  line-height: 1;
+  color: #00A8CD;
+  margin-bottom: 0.8rem;
+}
+.stat-card-clean .s-clean-label {
+  font-size: 0.88rem;
+  color: #64748B;
+  line-height: 1.55;
+  font-weight: 500;
+}
+@media (max-width: 900px) {
+  .about-stats-grid-clean { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .about-stats-grid-clean { grid-template-columns: 1fr; gap: 1.2rem; }
+}
+
+</style>
+<link rel="stylesheet" href="refresh.css?v=1">
+<link rel="stylesheet" href="deck.css?v=2">
+<link rel="stylesheet" href="motion.css?v=2">
+<link rel="stylesheet" href="compact.css?v=2">
+</head>
+<body>
+<!-- MLUE INTRO LOADER -->
+<div id="mlue-loader">
+  <div class="loader-stage" id="loaderStage">
+    <svg class="loader-logo" id="loaderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162" style="width:min(340px,32vw);height:auto;display:block;overflow:visible;">
+      <path class="from-left"  fill="#0F172A" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/>
+      <path class="from-left"  fill="#0F172A" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/>
+      <path class="from-left"  fill="#0F172A" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/>
+      <path class="from-right" fill="#0F172A" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/>
+      <path class="from-right" fill="#0F172A" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/>
+      <path class="from-left"  fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/>
+      <path class="from-right" fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/>
+    </svg>
+    <div class="loader-tagline">Creative Social Media Agency</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-svg-wrap">
+      <svg style="color:#0f172a;" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162" preserveAspectRatio="xMidYMid meet">
+        <path fill="currentColor" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/>
+        <path fill="currentColor" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/>
+        <path fill="currentColor" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/>
+        <path fill="currentColor" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/>
+        <path fill="currentColor" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/>
+        <path fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/>
+        <path fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/>
+      </svg>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Packages</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us →</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-burger" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="page-kicker">Who We Are</p>
+    <h1 class="page-title">
+      ABOUT<br><span class="cyan">MLUE</span>
+    </h1>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-inner">
+    <div class="story-year-badge reveal">
+      <span class="yr">2026</span>
+      <span class="yr-label">Founded in Sri Lanka</span>
+    </div>
+    <p class="section-label reveal">Our Story</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      People don't trust ads.<br><span class="italic-accent">They trust people.</span>
+    </h2>
+    <div class="story-divider reveal reveal-delay-2"></div>
+    <div class="story-body reveal reveal-delay-2">
+      <p>Most brand content looks the same. An influencer takes a bite, says "so good!", and moves on to the next shop. Customers have seen it a hundred times, and they know it was paid for.</p>
+      <p>Meanwhile the care, the skill and the people who make a business special rarely reach the screen. That's the part customers would actually like to see.</p>
+      <p>So <strong>MLUE</strong> doesn't hire a face. We come in, meet your people, and film how your business really runs. The audience that builds up belongs to you, and nobody else can copy your story.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- OUR APPROACH -->
+<section id="approach">
+  <div class="approach-top">
+    <div>
+      <p class="section-label reveal">Our Approach</p>
+      <h2 class="section-title reveal reveal-delay-1">We don't hire a face.<br>We show <span class="italic-accent">yours.</span></h2>
+    </div>
+    <p class="section-sub reveal reveal-delay-2">When customers know who runs the shop, who cooks the food and how it's made, they feel connected. And people buy from businesses they feel connected to.</p>
+  </div>
+  <div class="versus reveal">
+    <div class="versus-col them">
+      <div class="versus-label">Typical agency / influencer</div>
+      <ul>
+        <li>An outsider eats, talks, and leaves</li>
+        <li>Customers trust the influencer</li>
+        <li>Attention is rented, one post at a time</li>
+        <li>Looks like every other shop's content</li>
+        <li>Content is old news after a week</li>
+      </ul>
+    </div>
+    <div class="versus-col us">
+      <div class="versus-label">The MLUE way</div>
+      <ul>
+        <li>Your owner, team and kitchen take the spotlight</li>
+        <li>Customers trust your brand</li>
+        <li>You build your own loyal audience</li>
+        <li>Nobody else can copy your real story</li>
+        <li>Stories that keep working for months</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- THE PEOPLE BEHIND MLUE -->
+<section id="team">
+  <div class="team-header reveal">
+    <p class="section-label">The People Behind MLUE</p>
+    <h2 class="section-title">We practise what<br>we <span class="italic-accent">preach.</span></h2>
+    <p class="section-sub">Here's us. Three co-founders who believe the best marketing is simply showing people the truth: who you are, how you work and why you care.</p>
+  </div>
+
+  <div class="team-grid-layout">
+    <div class="team-photo-card reveal">
+      <img src="founder-updated.png" alt="Mishal Fais, Jathu and Mishfar Arafath, the co-founders of MLUE">
+    </div>
+
+    <div class="founders-cards-list reveal reveal-delay-1">
+      <div class="founder-card">
+        <h3>Mishal Fais</h3>
+        <p class="founder-role">Co-Founder</p>
+      </div>
+      <div class="founder-card">
+        <h3>Jathu</h3>
+        <p class="founder-role">Co-Founder</p>
+      </div>
+      <div class="founder-card">
+        <h3>Mishfar Arafath</h3>
+        <p class="founder-role">Co-Founder</p>
+      </div>
+
+      <div class="mission-callout">
+        <div class="mc-label">Our Mission</div>
+        <p class="mc-text">To help businesses earn customer trust by telling the true stories of their owners, teams and craft.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MISSION & APPROACH -->
+<section id="vision-mission">
+  <div class="vm-header">
+    <p class="section-label reveal">What Drives Us</p>
+    <h2 class="section-title reveal reveal-delay-1">Mission &amp;<br>Approach</h2>
+  </div>
+  <div class="vm-grid">
+    <div class="vm-card vision reveal">
+      <div class="vm-bg-letter">M</div>
+      <div class="vm-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+        </svg>
+      </div>
+      <div class="vm-label">Mission</div>
+      <div class="vm-title">Earn customer trust</div>
+      <p class="vm-text">To help businesses earn customer trust by telling the true stories of their owners, teams and craft. We help customers meet the real owner, team and process behind your business, so they trust you, choose you and keep coming back.</p>
+    </div>
+    <div class="vm-card mission reveal reveal-delay-1">
+      <div class="vm-bg-letter">A</div>
+      <div class="vm-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+        </svg>
+      </div>
+      <div class="vm-label">Approach</div>
+      <div class="vm-title">Come in and look around</div>
+      <p class="vm-text">We don't plan your content from a desk. We visit, talk to the owner and the team, and watch how things run. Then we pick the people, moments and details your customers will love.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="values-header">
+    <div>
+      <p class="section-label reveal">What We Believe</p>
+      <h2 class="section-title reveal reveal-delay-1">Our Values</h2>
+    </div>
+    <p class="values-header-sub reveal reveal-delay-2">These are the ideas behind every plan we sell and every video we film.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      <div class="value-name">Faces build trust faster than logos</div>
+      <div class="value-desc">A logo is easy to scroll past. When customers see the owner who runs the shop and the people who work in it, they start to feel connected to the place.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div class="value-name">Showing the process proves your quality</div>
+      <div class="value-desc">When people can watch how your food or product is made, they don't have to take your word for it.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="value-name">The audience you build belongs to you</div>
+      <div class="value-desc">An influencer's followers follow the influencer. We build attention around your brand, so it stays with you.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </svg>
+      </div>
+      <div class="value-name">Nobody else can copy your real story</div>
+      <div class="value-desc">Anyone can copy a trend. The people and craft behind your business are yours alone.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-svg-wrap" style="height:36px;">
+        <svg style="color:#0f172a;" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162">
+          <path fill="currentColor" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/>
+          <path fill="currentColor" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/>
+          <path fill="currentColor" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/>
+          <path fill="currentColor" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/>
+          <path fill="currentColor" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/>
+          <path fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/>
+          <path fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/>
+        </svg>
+      </div>
+      <p>We show the real owner, team and process behind your business.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="services.html">Social Media</a>
+      <a href="services.html">Content Creation</a>
+      <a href="services.html">Video Production</a>
+      <a href="services.html">Event Coverage</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="mailto:infomluelk@gmail.com">infomluelk@gmail.com</a>
+      <a href="tel:+94728444300">+94 728 444 300</a>
+      <a href="contact.html">Let's Meet</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 MLUE. All rights reserved.</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/mluelk?srtk=MWZrNHBvNHNieWljeQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/share/1C7NvD5EyV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1877F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@mlue.lk?_r=1&amp;_t=ZS-9APvXCyV6C0" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="motion.js" defer></script>
+
+<script src="loader.js"></script>
+</body>
+</html>

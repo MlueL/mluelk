@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Let's meet. Message MLUE and we'll walk through your business and find the stories your customers have never seen.">
+<title>Contact | MLUE</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="shared.css?v=1791568788258">
+<style>
+
+/* ── HERO (Plain White, Centered) ─────────────────────────── */
+#hero {
+  min-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8.5rem 5vw 4.5rem;
+  background: #FFFFFF !important;
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page-kicker {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--cyan); font-weight: 600; margin-bottom: 1.2rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+}
+.page-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(3.6rem, 8.5vw, 7.5rem);
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+  opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  color: #0F172A;
+  text-align: center;
+}
+.page-title .cyan { color: var(--cyan); }
+
+/* ── CONTACT MAIN ─────────────────────────────────── */
+#contact-main {
+  padding: 7rem 5vw 9rem;
+  border-top: 1px solid var(--border);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 7rem;
+  align-items: start;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ── LEFT COLUMN ──────────────────────────────────── */
+.contact-info-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+.contact-info-body {
+  color: var(--grey);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin-bottom: 3rem;
+  max-width: 400px;
+}
+
+/* Contact details */
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  margin-bottom: 3rem;
+}
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.contact-detail-icon {
+  width: 52px; height: 52px;
+  border-radius: 1rem;
+  background: rgba(0,168,205,0.1);
+  border: 1px solid var(--border-blue);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.contact-detail-item:hover .contact-detail-icon {
+  background: rgba(34,211,238,0.1);
+  border-color: var(--border-cyan);
+  transform: translateY(-2px);
+}
+.contact-detail-icon svg {
+  width: 22px; height: 22px;
+}
+.contact-detail-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.contact-detail-val {
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.contact-detail-val a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-detail-val a:hover { color: var(--cyan); }
+
+/* Action buttons */
+.contact-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+/* Packages card */
+.contact-packages {
+  background: var(--navy-card);
+  border: 1px solid var(--border-blue);
+  border-radius: 1.5rem;
+  padding: 2rem 2.2rem;
+}
+.contact-packages h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+}
+.pkg-pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.4rem;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.pkg-pill:hover { background: rgba(0,168,205,0.1); }
+.pkg-pill:last-child { margin-bottom: 0; }
+.pkg-pill-name { font-weight: 600; font-size: 0.9rem; }
+.pkg-pill-price { color: var(--cyan); font-size: 0.85rem; font-weight: 600; }
+
+/* ── RIGHT COLUMN ─────────────────────────────────── */
+.contact-form-wrap {
+  background: var(--navy-card);
+  border: 1px solid var(--border-blue);
+  border-radius: 2rem;
+  padding: 3.5rem;
+  position: sticky;
+  top: 100px;
+}
+.form-title {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.form-sub {
+  color: var(--grey);
+  font-size: 0.88rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 0.55rem;
+  transition: color 0.2s;
+}
+.form-group:focus-within label { color: var(--cyan); }
+input, textarea, select {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.95rem 1.2rem;
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+input::placeholder, textarea::placeholder { color: var(--grey); }
+input:focus, textarea:focus, select:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(34,211,238,0.08);
+}
+textarea { resize: vertical; min-height: 130px; }
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2364748B' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  cursor: pointer;
+}
+select option { background: var(--navy-card); color: var(--white); }
+
+/* CAPTCHA placeholder */
+.captcha-wrap {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.2rem;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.88rem;
+  color: var(--grey);
+}
+.captcha-check {
+  width: 22px; height: 22px;
+  border: 2px solid var(--border-blue);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #FFFFFF;
+}
+.captcha-check.checked {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+.captcha-check.checked::after {
+  content: '✓';
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+.captcha-text { flex: 1; }
+.captcha-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.65rem;
+  color: var(--grey);
+  opacity: 0.7;
+}
+.captcha-brand-logo {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, #4285F4, #34A853);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900; color: white;
+  font-family: serif;
+}
+
+/* Submit button */
+.form-submit {
+  width: 100%;
+  padding: 1.15rem;
+  border-radius: 3rem;
+  border: none;
+  background: linear-gradient(135deg, var(--blue), #0284C7);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 24px var(--blue-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.form-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue));
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px var(--blue-glow);
+}
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.form-note {
+  color: var(--grey);
+  font-size: 0.78rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ── SUCCESS STATE ─────────────────────────────────── */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+.success-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.form-success h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+  color: var(--cyan);
+}
+.form-success p {
+  color: var(--grey);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* ── MOBILE ────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .contact-form-wrap {
+    position: static;
+    padding: 2.5rem 2rem;
+  }
+  .form-row { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-info-body { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  #contact-main { padding: 5rem 5vw 7rem; }
+  .contact-form-wrap { padding: 2rem 1.5rem; }
+  .contact-actions { flex-direction: column; }
+  .contact-actions .btn-primary,
+  .contact-actions .btn-secondary { text-align: center; justify-content: center; }
+}
+</style>
+<link rel="stylesheet" href="refresh.css?v=1">
+<link rel="stylesheet" href="deck.css?v=2">
+<link rel="stylesheet" href="motion.css?v=2">
+<link rel="stylesheet" href="compact.css?v=2">
+</head>
+<body>
+<!-- MLUE INTRO LOADER -->
+<div id="mlue-loader">
+  <div class="loader-stage" id="loaderStage">
+    <svg class="loader-logo" id="loaderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162" style="width:min(340px,32vw);height:auto;display:block;overflow:visible;">
+      <path class="from-left"  fill="#0F172A" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/>
+      <path class="from-left"  fill="#0F172A" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/>
+      <path class="from-left"  fill="#0F172A" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/>
+      <path class="from-right" fill="#0F172A" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/>
+      <path class="from-right" fill="#0F172A" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/>
+      <path class="from-left"  fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/>
+      <path class="from-right" fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/>
+    </svg>
+    <div class="loader-tagline">Creative Social Media Agency</div>
+  </div>
+</div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo"><div class="logo-svg-wrap"><svg style="color:#0f172a;" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162"><path fill="currentColor" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/><path fill="currentColor" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/><path fill="currentColor" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/><path fill="currentColor" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/><path fill="currentColor" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/><path fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/><path fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/></svg></div></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="work.html">Packages</a></li>
+    <li><a href="contact.html" class="nav-cta active">Contact Us →</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-burger" onclick="toggleMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-cyan"></div>
+  <div class="hero-content">
+    <div class="page-kicker">Let's Talk</div>
+    <h1 class="page-title">GET IN<br><span class="cyan">TOUCH</span></h1>
+  </div>
+</section>
+
+<!-- ── MAIN CONTACT ──────────────────────────── -->
+<section id="contact-main">
+  <div class="contact-grid">
+
+    <!-- LEFT: Info -->
+    <div class="reveal-left">
+      <h2 class="contact-info-title">Let's meet and find<br><span class="italic-accent">your story.</span></h2>
+      <p class="contact-info-body">Fill out the form or message us and we'll get back to you within 24 hours. We'd like to walk through your business and find the stories your customers have never seen.</p>
+
+      <div class="contact-details">
+        <!-- Email -->
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val"><a href="mailto:infomluelk@gmail.com">infomluelk@gmail.com</a></div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="var(--cyan)"/>
+              <path d="M12.048 2.002C6.476 2.002 1.94 6.532 1.94 12.098c0 1.763.463 3.479 1.345 4.995L2 22l5.04-1.322a10.108 10.108 0 0 0 4.984 1.315h.004c5.572 0 10.109-4.53 10.109-10.097 0-2.697-1.052-5.23-2.961-7.137A10.06 10.06 0 0 0 12.048 2zm0 18.49h-.003a8.4 8.4 0 0 1-4.282-1.175l-.307-.183-3.183.835.85-3.1-.2-.318a8.38 8.38 0 0 1-1.285-4.451c0-4.638 3.78-8.412 8.423-8.412a8.37 8.37 0 0 1 5.954 2.465 8.347 8.347 0 0 1 2.462 5.945c-.002 4.638-3.78 8.394-8.429 8.394z" fill="var(--cyan)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">WhatsApp</div>
+            <div class="contact-detail-val"><a href="https://wa.me/94728444300" target="_blank" rel="noopener noreferrer">+94 728 444 300</a></div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.74a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Call Us</div>
+            <div class="contact-detail-val"><a href="tel:+94728444300">+94 728 444 300</a></div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Based In</div>
+            <div class="contact-detail-val">Sri Lanka, serving island-wide</div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-wrap reveal-right">
+      <div id="form-body">
+        <div class="form-title">Send Us a Message</div>
+        <div class="form-sub">We'll reply within 24 hours on business days.</div>
+
+        <form id="contact-form" action="/api/contact" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-honeypot" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Aisha" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Kamara" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="hello@yourbrand.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+94 728 444 300">
+          </div>
+          <div class="form-group">
+            <label for="pkg-select">Interested In</label>
+            <select id="pkg-select" name="interested_in">
+              <option value="">Select a package or service...</option>
+              <option value="Starter">Starter</option>
+              <option value="Growth">Growth</option>
+              <option value="Premium">Premium</option>
+              <optgroup label="Single Services &amp; Events">
+                <option value="Video Editing">Video Editing</option>
+                <option value="Video Shooting + Editing">Video Shooting + Editing</option>
+                <option value="Event Coverage: Small Event">Event Coverage (Small Event)</option>
+                <option value="Event Coverage: Large Event">Event Coverage (Large Event, 3-Person Crew)</option>
+                <option value="Additional Drone Footage">Additional Drone Footage</option>
+              </optgroup>
+              <option value="Custom / Not Sure Yet">Custom / Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Business</label>
+            <textarea id="message" name="message" placeholder="What does your business do, who are the people behind it, and what would you like customers to see?"></textarea>
+          </div>
+
+          <!-- CAPTCHA widget -->
+          <div class="captcha-wrap">
+            <div class="captcha-check" id="captcha-check" onclick="toggleCaptcha()"></div>
+            <span class="captcha-text">I'm not a robot</span>
+          </div>
+
+          <button type="submit" class="form-submit" id="submit-btn">
+            <span id="btn-text">Send Message →</span>
+          </button>
+          <p class="form-note">🔒 Your info is private. We never spam.</p>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="form-success" id="form-success">
+        <span class="success-icon">✓</span>
+        <h3>Message Sent!</h3>
+        <p>Thanks for reaching out. We'll be in touch within 24 hours.</p>
+        <a href="work.html" class="btn-primary" style="display:inline-flex;">View Our Packages →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-svg-wrap" style="height:36px;">
+        <svg style="color:#0f172a;" xmlns="http://www.w3.org/2000/svg" viewBox="88 468 634 162">
+          <path fill="currentColor" d="M 483.695312 620.753906 C 461.484375 616.179688 445.511719 604.699219 437.359375 587.480469 C 431.121094 574.417969 431.285156 576.332031 430.953125 522.84375 L 430.703125 474.761719 L 461.484375 474.761719 L 461.734375 520.761719 C 461.980469 564.105469 462.148438 566.933594 463.644531 570.675781 C 467.304688 579.578125 474.460938 586.398438 483.363281 589.5625 C 490.683594 592.140625 506.65625 592.804688 513.5625 590.808594 C 525.207031 587.480469 532.113281 582.070312 536.355469 573.007812 L 538.519531 568.347656 L 538.933594 521.757812 L 539.347656 475.171875 L 554.988281 474.921875 L 570.628906 474.757812 L 570.382812 522.757812 C 570.050781 569.675781 570.050781 571.003906 568.21875 576.914062 C 561.644531 598.625 547.503906 612.1875 524.292969 619.171875 C 517.808594 621.085938 515.144531 621.417969 503.164062 621.667969 C 493.597656 621.835938 487.6875 621.585938 483.699219 620.753906 Z"/>
+          <path fill="currentColor" d="M 108.175781 618.011719 L 93.867188 617.84375 L 94.03125 546.46875 L 94.28125 475.175781 L 102.683594 474.925781 L 111.003906 474.679688 L 126.808594 489.902344 C 135.460938 498.21875 152.933594 515.109375 165.574219 527.421875 L 188.703125 549.796875 L 190.949219 547.964844 C 192.277344 546.96875 201.84375 538.230469 212.410156 528.5 C 222.890625 518.765625 240.359375 502.628906 251.09375 492.726562 L 270.644531 474.761719 L 289.363281 474.761719 L 289.363281 617.84375 L 274.804688 617.84375 C 266.820312 617.84375 259.996094 617.925781 259.664062 618.09375 C 259.25 618.175781 258.832031 598.542969 258.582031 574.417969 L 258.167969 530.660156 L 240.699219 546.46875 C 206.59375 577.414062 199.9375 583.15625 196.609375 584.652344 C 192.199219 586.648438 185.128906 586.648438 180.554688 584.570312 C 178.222656 583.492188 168.742188 574.921875 151.355469 557.949219 C 137.210938 544.222656 125.398438 532.992188 125.148438 532.992188 C 124.902344 532.992188 124.570312 552.125 124.484375 575.585938 C 124.316406 603.203125 123.902344 618.175781 123.402344 618.175781 C 122.988281 618.257812 116.082031 618.175781 108.179688 618.011719 Z"/>
+          <path fill="currentColor" d="M 307.996094 617.929688 C 307.832031 617.761719 307.664062 585.902344 307.664062 547.132812 C 307.664062 493.480469 307.910156 476.507812 308.664062 475.757812 C 309.328125 475.09375 313.988281 474.761719 324.050781 474.761719 L 338.445312 474.761719 L 338.445312 588.730469 L 416.726562 588.730469 L 418.722656 590.808594 C 420.71875 592.71875 420.800781 593.21875 420.800781 603.953125 C 420.800781 613.601562 420.632812 615.265625 419.300781 616.429688 C 417.972656 617.597656 412.066406 617.761719 363.066406 618.011719 C 332.953125 618.175781 308.160156 618.09375 307.992188 617.929688 Z"/>
+          <path fill="currentColor" d="M 588.347656 617.929688 C 588.179688 617.761719 588.015625 611.109375 588.015625 603.121094 L 588.015625 588.730469 L 718.371094 588.730469 L 717.625 593.054688 C 716.125 601.042969 711.300781 608.445312 704.644531 612.855469 C 697.160156 617.847656 697.324219 617.761719 640.589844 618.015625 C 612.054688 618.179688 588.511719 618.097656 588.347656 617.933594 Z"/>
+          <path fill="currentColor" d="M 588.179688 498.300781 C 588.761719 488.320312 593.585938 481 602.15625 476.925781 C 605.820312 475.179688 606.898438 475.179688 661.972656 474.925781 L 718.042969 474.679688 L 717.542969 478.507812 C 716.210938 487.824219 707.476562 498.558594 697.992188 502.382812 L 693.25 504.292969 L 640.507812 504.542969 L 587.765625 504.789062 Z"/>
+          <path fill="#22D3EE" d="M 219.234375 618.175781 C 218.902344 617.84375 218.652344 609.609375 218.652344 599.957031 L 218.652344 582.324219 L 227.136719 574.503906 C 241.863281 560.859375 247.101562 556.285156 248.101562 556.285156 C 248.765625 556.285156 248.933594 564.601562 248.601562 587.230469 L 248.1875 618.261719 L 233.960938 618.511719 C 226.222656 618.589844 219.570312 618.429688 219.238281 618.175781 Z"/>
+          <path fill="#22D3EE" d="M 588.015625 545.882812 L 588.015625 531.328125 L 709.636719 531.328125 L 709.058594 535.320312 C 708.808594 537.484375 707.644531 541.226562 706.480469 543.722656 C 703.816406 549.546875 695.332031 557.949219 690.503906 559.445312 C 687.925781 560.195312 674.699219 560.445312 637.511719 560.445312 L 588.015625 560.445312 Z"/>
+        </svg>
+      </div>
+      <p>We show the real owner, team and process behind your business.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="work.html">Packages</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="services.html">Social Media</a>
+      <a href="services.html">Content Creation</a>
+      <a href="services.html">Video Production</a>
+      <a href="services.html">Event Coverage</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="mailto:infomluelk@gmail.com">infomluelk@gmail.com</a>
+      <a href="tel:+94728444300">+94 728 444 300</a>
+      <a href="contact.html">Let's Meet</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 MLUE. All rights reserved.</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/mluelk?srtk=MWZrNHBvNHNieWljeQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/share/1C7NvD5EyV/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1877F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@mlue.lk?_r=1&amp;_t=ZS-9APvXCyV6C0" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script src="motion.js" defer></script>
+<script>
+/* ── Simple human check ── */
+let captchaVerified = false;
+function toggleCaptcha() {
+  const check = document.getElementById('captcha-check');
+  captchaVerified = !captchaVerified;
+  check.classList.toggle('checked', captchaVerified);
+  updateSubmitState();
+}
+
+/* ── 60-SECOND COOLDOWN TIMER (persisted across nav/reload) ── */
+const COOLDOWN_KEY = 'mlue-last-submit';
+const COOLDOWN_MS = 60000;
+
+let cooldownActive = false;
+let cooldownSeconds = 0;
+let timerInterval;
+
+// Reads last-send timestamp from storage, returns seconds left (0 = none)
+function getRemainingCooldown() {
+  const last = localStorage.getItem(COOLDOWN_KEY);
+  if (!last) return 0;
+  const remainingMs = COOLDOWN_MS - (Date.now() - parseInt(last, 10));
+  return remainingMs > 0 ? Math.ceil(remainingMs / 1000) : 0;
+}
+
+function startCooldown(seconds) {
+  cooldownActive = seconds > 0;
+  cooldownSeconds = seconds;
+  updateSubmitState();
+  clearInterval(timerInterval);
+  if (!cooldownActive) return;
+  timerInterval = setInterval(() => {
+    cooldownSeconds = getRemainingCooldown();
+    if (cooldownSeconds <= 0) {
+      clearInterval(timerInterval);
+      cooldownActive = false;
+    }
+    updateSubmitState();
+  }, 1000);
+}
+
+function updateSubmitState() {
+  const btn = document.getElementById('submit-btn');
+  const txt = document.getElementById('btn-text');
+  if (!btn || !txt) return;
+  if (cooldownActive) {
+    btn.disabled = true;
+    txt.textContent = `Please wait ${cooldownSeconds}s before sending...`;
+  } else if (!captchaVerified) {
+    btn.disabled = true;
+    txt.textContent = 'Please verify you\'re not a robot';
+  } else {
+    btn.disabled = false;
+    txt.textContent = 'Send Message →';
+  }
+}
+
+// On load: resume countdown only if a send happened <60s ago. First-ever
+// visit → getRemainingCooldown() returns 0 → button active immediately.
+startCooldown(getRemainingCooldown());
+
+
+/* If the form can't reach the server (for example when the site is opened as a plain file),
+   open the visitor's email app with the message filled in so the enquiry is never lost. */
+function mailtoFallback() {
+  const form = document.getElementById('contact-form');
+  const d = Object.fromEntries(new FormData(form).entries());
+  const body = 'Name: ' + (d.first_name || '') + ' ' + (d.last_name || '') + '\nEmail: ' + (d.email || '') +
+    '\nPhone: ' + (d.phone || '') + '\nInterested in: ' + (d.interested_in || '') + '\n\n' + (d.message || '');
+  window.location.href = 'mailto:infomluelk@gmail.com?subject=' + encodeURIComponent('New enquiry from the MLUE website') +
+    '&body=' + encodeURIComponent(body);
+}
+
+/* ── FORM SUBMISSION ────────────────
+   Paste your Google Apps Script web app URL between the quotes below (see the setup guide).
+   Leave it empty to use the built-in server (when running npm start) or the email-app fallback. */
+const FORM_ENDPOINT = '';
+
+async function sendEnquiry(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.page = location.href;
+  if (FORM_ENDPOINT) {
+    // Google Apps Script: saves a row in Google Sheets and emails you.
+    // no-cors keeps this a plain request that works from any site, including GitHub Pages.
+    await fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) });
+    return true;
+  }
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+  return response.ok;
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  if (!captchaVerified) {
+    alert('Please verify you\'re not a robot first.');
+    return;
+  }
+  const btn = document.getElementById('submit-btn');
+  const txt = document.getElementById('btn-text');
+  btn.disabled = true;
+  txt.textContent = 'Sending...';
+
+  let sent = false;
+  try { sent = await sendEnquiry(document.getElementById('contact-form')); } catch (err) { sent = false; }
+
+  if (sent) {
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+    // Persist send time + start 60s cooldown, which survives navigation and reload
+    localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
+    captchaVerified = false;
+    document.getElementById('captcha-check').classList.remove('checked');
+    startCooldown(60);
+  } else {
+    txt.textContent = 'Opening your email app...';
+    mailtoFallback();
+    btn.disabled = false;
+    setTimeout(() => { txt.textContent = 'Send Message →'; }, 3000);
+  }
+}
+
+</script>
+<script src="loader.js"></script>
+</body>
+</html>
